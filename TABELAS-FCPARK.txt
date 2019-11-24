@@ -1,0 +1,32 @@
+CREATE TABLE Estacionamento(
+idEstacionamento		INT PRIMARY KEY IDENTITY(1,1),
+donoEstacionamento		VARCHAR(50) NOT NULL,
+emailEstacionamento		VARCHAR(50) NOT NULL,
+cnpjEstacionamento		VARCHAR(50) NOT NULL UNIQUE,
+telefoneEstacionamento	VARCHAR(10) NOT NULL,
+senhaEstacionamento		VARCHAR(50) NOT NULL,
+nomeEstacionamento		VARCHAR(100) NOT NULL UNIQUE,
+estCidEstacionamento	VARCHAR(50) NOT NULL ,
+enderecoEstacionamento	VARCHAR(50) NOT NULL,
+compEstacionamento		VARCHAR(5) NOT NULL UNIQUE,
+qtdMotos				INTEGER NOT NULL,
+qtdCarros				INTEGER NOT NULL,
+funcEstabelecimento		VARCHAR(50) NOT NULL,
+
+)
+go
+
+
+CREATE TABLE Veiculos(
+idVeiculo			INT PRIMARY KEY IDENTITY(1,1),
+marcaVeiculo		VARCHAR(50) NOT NULL,
+modeloVeiculo		VARCHAR(50) NOT NULL,
+corVeiculo			VARCHAR(50) NOT NULL,
+placaVeiculo		VARCHAR(50) NOT NULL UNIQUE,
+tipoVeiculo			VARCHAR(50) NOT NULL,
+idEstacionamento    INTEGER,
+CONSTRAINT fk_Veiculo_Estacionamento FOREIGN KEY (idEstacionamento) REFERENCES Estacionamento (idEstacionamento),
+
+)
+
+go
