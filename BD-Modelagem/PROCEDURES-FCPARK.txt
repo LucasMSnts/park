@@ -1,0 +1,64 @@
+CREATE PROC pi_Estacionamento(
+@donoEstacionamento			VARCHAR(50),
+@emailEstacionamento		VARCHAR(50) ,
+@cnpjEstacionamento			VARCHAR(50) ,
+@telefoneEstacionamento		VARCHAR(10),
+@senhaEstacionamento		VARCHAR(50) ,
+@nomeEstacionamento			VARCHAR(100),
+@estCidEstacionamento		VARCHAR(50),
+@enderecoEstacionamento		VARCHAR(50) ,
+@compEstacionamento			VARCHAR(5) ,
+@qtdMotos					NUMERIC(3,0) ,
+@qtdCarros					NUMERIC(3,0),
+@funcEstabelecimento		VARCHAR(50)
+
+)
+as
+insert into Estacionamento(donoEstacionamento,emailEstacionamento,cnpjEstacionamento,telefoneEstacionamento,senhaEstacionamento,nomeEstacionamento,estCidEstacionamento,enderecoEstacionamento,compEstacionamento,qtdMotos,qtdCarros,funcEstabelecimento)
+values(@donoEstacionamento ,@emailEstacionamento ,@cnpjEstacionamento,@telefoneEstacionamento,@senhaEstacionamento,@nomeEstacionamento,@estCidEstacionamento,@enderecoEstacionamento,@compEstacionamento,@qtdMotos,@qtdCarros,@funcEstabelecimento)
+
+go
+
+ CREATE PROCEDURE pi_Veiculos (
+
+@marcaVeiculo		VARCHAR(50) ,
+@modeloVeiculo		VARCHAR(50) ,
+@corVeiculo			VARCHAR(50) ,
+@placaVeiculo		VARCHAR(50) ,
+@tipoVeiculo			VARCHAR(50),
+@cnpjEstacionamento		VARCHAR(50)
+
+)
+as
+DECLARE @idEstacionamento int
+SELECT @idEstacionamento = @idEstacionamento
+FROM Estacionamento
+where cnpjEstacionamento = @cnpjEstacionamento
+insert into Veiculos(marcaVeiculo,modeloVeiculo,corVeiculo,placaVeiculo,tipoVeiculo,idEstacionamento)
+values(@marcaVeiculo,@modeloVeiculo,@corVeiculo,@placaVeiculo,@tipoVeiculo,@idEstacionamento)
+
+select * from Veiculos
+
+exec pi_Veiculos 'volks','sedan','preto','2342','27346',1
+
+go
+
+
+
+CREATE PROC pd_Estacionamento(
+
+@cnpjEstacionamento		VARCHAR(50)
+)
+as 
+delete from Estacionamento 
+where cnpjEstacionamento = @cnpjEstacionamento
+go
+
+
+CREATE PROC pd_Veiculos(
+@placaVeiculo	VARCHAR(50)
+)
+as
+delete from Veiculos
+where placaVeiculo = @placaVeiculo
+go
