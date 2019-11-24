@@ -1,13 +1,35 @@
 package br.com.hackathonfc.park.domain;
 
-public class Veiculo {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+@Entity
+public class Veiculo implements Serializable{
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String marcaVeiculo;
 	private String modeloVeiculo;
 	private String corVeiculo;
 	private String placa;
 	private String tipoVeiculo;
+	
+	
+	
 	
 	public Veiculo() {
 		
@@ -71,6 +93,8 @@ public class Veiculo {
 	public void setTipoVeiculo(String tipoVeiculo) {
 		this.tipoVeiculo = tipoVeiculo;
 	}
+	
+	
 
 	@Override
 	public int hashCode() {

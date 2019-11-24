@@ -1,11 +1,14 @@
 package br.com.hackathonfc.park.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Estacionamento implements Serializable {
@@ -26,7 +29,9 @@ public class Estacionamento implements Serializable {
 	private String telefone;
 	private Integer qtdMoto;
 	private Integer qtdCarro;
-	private String funcao;
+	private String funcao;	
+	
+	
 	
 	public Estacionamento() {
 		
@@ -154,6 +159,8 @@ public class Estacionamento implements Serializable {
 	public void setFuncao(String funcao) {
 		this.funcao = funcao;
 	}
+	
+
 
 	@Override
 	public int hashCode() {
